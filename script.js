@@ -1,13 +1,16 @@
 const BASE_IMG_URL = "https://image.tmdb.org/t/p/w500/"
+const ERROR_IMG_URL = "https://ciat.cgiar.org/wp-content/uploads/image-not-found.png"
 const API_KEY = "1b5be75491b536d82aea66fdb66143df"
 let pages = 1
 
 const moviesGridEl = document.getElementById("movies-grid")
+const movieCardEl = document.getElementById("movie-card")
 const searchInputEl = document.getElementById("search-input")
 const loaderEl = document.querySelector(".loader")
+const modalEl = document.getElementById("modal-container")
+const closeModalEl = document.getElementById("modal-close-container")
 
 const showLoading = () => {
-    console.log("IM LOADING")
     loaderEl.classList.add('show')
 }
 
@@ -15,11 +18,40 @@ const removeLoading = () => {
     loaderEl.classList.remove('show')
 }
 
+const openModal = async movieId => {
+    const response = await fetch(`https://api.themoviedb.org/3/movie/${movieId}?api_key=${API_KEY}&language=en-US`)
+    const openedMovieData = await response.json()
+
+    const { title, poster_path } = openedMovieData
+    const moviePoster = BASE_IMG_URL + poster_path
+
+    modalEl.innerHTML += `
+    <div id="modal">
+        <div id="modal-close-container">
+            <svg xmlns="http://www.w3.org/2000/svg" class="modal-close" onclick="closeModal();" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+        </div>
+        <div id="modal-movie-title">${title}</div>
+    </div>
+    <img src="${poster_path === null ? ERROR_IMG_URL : moviePoster}" alt="${title} Poster">
+    `
+
+    modalEl.classList.add('show')
+}
+
+const closeModal = () => {
+    modalEl.innerHTML = ""
+    modalEl.classList.remove('show')
+}
+
 const renderMovies = movies => {
     movies.forEach(movie => {
+        const moviePoster = BASE_IMG_URL + movie.poster_path
+
         moviesGridEl.innerHTML += `
         <div class="movie-card">
-            <img src="${BASE_IMG_URL + movie.poster_path}" class="movie-poster" alt="${movie.original_title} Poster">
+            <img src="${movie.poster_path === null ?  ERROR_IMG_URL : moviePoster}" class="movie-poster" onClick="openModal(${movie.id})" alt="${movie.original_title} Poster">
             <div class="movie-title">${movie.title}</div>
             <div id="votes-container">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
