@@ -35,9 +35,11 @@ const renderMovies = movies => {
 
 const render404 = () => {
     moviesGridEl.innerHTML = ""
-    loadMoreBtnEl.innerHTML = ""
     moviesGridEl.innerHTML += `
-    <div id="error-container">NOT FOUND</div>
+    <div id="error-container">
+        <div id="error-code">404</div>
+        <div id="error-message">Aw Snap! Movie not found. :(</div>
+    </div>
     `
 }
 
@@ -75,7 +77,6 @@ const fetchFilteredMovies = async searchInputVal => {
     const response = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&language=en-US&query=${searchInputVal}&page=${pages}&include_adult=false`)
     if (!response.ok) render404()
     const filteredData = await response.json()
-
     if (filteredData.results.length <= 0) render404()
     renderMovies(filteredData.results)
 }

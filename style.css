@@ -53,6 +53,18 @@ body {
     align-content: space-evenly;
 }
 
+@media (max-width: 1080px) {
+    #movies-grid {
+        grid-template-columns: auto auto;
+    }
+}
+
+@media (max-width: 760px) {
+    #movies-grid {
+        grid-template-columns: auto;
+    }
+}
+
 .movie-card {
     background-color: #082032;
     width: 300px;
@@ -125,7 +137,39 @@ body {
 	}
 }
 
-
 #error-container {
-    background-color: red;
+    height: 80vh;
+    margin-left: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#error-code {
+    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+    background-size: cover;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradient 15s ease infinite;
+    font-size: 200px;
+    font-weight: bold;
+}
+
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+
+#error-message {
+    margin-top: 20px;
+    font-size: 25px;
 }
