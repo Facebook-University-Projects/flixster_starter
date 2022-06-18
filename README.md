@@ -36,16 +36,14 @@ Deployed Application (optional): [Flixster Deployed Site](https://facebook-unive
 ### STRETCH FEATURES
 
 - [x] Deploy website using GitHub Pages.
-- [ ] Allow user to view more details about a movie within a popup.
+- [X] Allow user to view more details about a movie within a popup.
 - [x] Improve the user experience through CSS & animation.
 - [ ] Allow movie video trailers to be played using [embedded YouTube](https://support.google.com/youtube/answer/171780?hl=en)
-- [ ] Implement anything else that you can get done to improve the app functionality!
+- [x] Implement anything else that you can get done to improve the app functionality!
 
 ### Walkthrough Video
 
-`TODO://` Add the embedded URL code to your animated app walkthrough below, `ADD_EMBEDDED_CODE_HERE`. Make sure the video or gif actually renders and animates when viewing this README. (🚫 Remove this paragraph after adding walkthrough video)
-
-`ADD_EMBEDDED_CODE_HERE`
+[![Demo](https://cdn.loom.com/sessions/thumbnails/6c9adc207b994166b7211d1851d16606-with-play.gif)](https://www.loom.com/share/6c9adc207b994166b7211d1851d16606)
 
 ### Reflection
 
@@ -67,4 +65,4 @@ Deployed Application (optional): [Flixster Deployed Site](https://facebook-unive
 
 ### Shout out
 
-Phineas,
+Phineas, Yilika

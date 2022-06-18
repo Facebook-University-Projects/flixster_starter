@@ -21,8 +21,9 @@ const removeLoading = () => {
 const openModal = async movieId => {
     const response = await fetch(`https://api.themoviedb.org/3/movie/${movieId}?api_key=${API_KEY}&language=en-US`)
     const openedMovieData = await response.json()
+    console.log('openedMovieData: ', openedMovieData);
 
-    const { title, poster_path } = openedMovieData
+    const { title, poster_path, overview } = openedMovieData
     const moviePoster = BASE_IMG_URL + poster_path
 
     modalEl.innerHTML += `
@@ -33,6 +34,7 @@ const openModal = async movieId => {
             </svg>
         </div>
         <div id="modal-movie-title">${title}</div>
+        <div id="modal-movie-overview">${overview}</div>
     </div>
     <img src="${poster_path === null ? ERROR_IMG_URL : moviePoster}" alt="${title} Poster">
     `
